@@ -2,18 +2,17 @@ using UnityEngine;
 
 public class Generator : MonoBehaviour
 {
-    // при переходе на большие префабы цифры нужно заменить
 
     public GameObject[] paterns;
-    private Vector3 _currentPosition = new Vector3(0,0,25f); // позиция спавна
+    private Vector3 _currentPosition = new Vector3(0,0,35f); // позиция спавна
 
     void Start()
     {
         DeadMenu.OnStart +=OnStart;
     }
-
+ 
     private void generate(){
-        int number   =  Random.Range(0, 4);  // выбор префаба
+        int number   =  Random.Range(0, 5);  // выбор префаба
         Instantiate(paterns[number],_currentPosition, Quaternion.identity);
         
     }

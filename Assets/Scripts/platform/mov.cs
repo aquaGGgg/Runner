@@ -2,37 +2,51 @@ using UnityEngine;
 
 public class Mov : MonoBehaviour
 {
+   public GameObject target;  
 
-   public Transform target;
-   [SerializeField]
-   private static float _speed = 3f;
 
-   void Start(){
-        Trigger_Collision_Controller.OnDeath +=Stop;
+   private static float _speed = 0f;
+
+   public float a = _speed;
+
+
+
+   void Start()
+   {
+          MainMenu.OnPlay += Play;
+          Trigger_Collision_Controller.OnDeath += Stop;
    }
 
-    void Update()
-    {
+   void Update()
+   {
+     a = _speed;
         if (target == null) return;
 
-        Vector3 direction = (target.position - transform.position).normalized; 
-        transform.position += direction * _speed * Time.deltaTime; 
+        Vector3 direction = (target.transform.position - transform.position).normalized;
 
-        if (Vector3.Distance(transform.position, target.position) < 0.1f)
+        transform.position += direction * _speed * Time.deltaTime;
+
+        if (Vector3.Distance(transform.position, target.transform.position) < 0.1f)
         {
-            transform.position = target.position; 
+            transform.position = target.transform.position;
             bustMovspead();
-            Destroy(gameObject); 
+            Destroy(gameObject);
         }
+   }
 
-    }
-
-    private void bustMovspead(){ // ускорение после каждого пройденого препятствия
+   private void bustMovspead()  
+   {
         _speed += 0.01f;
-    }
+   }
 
-    void Stop(){
-        target =null;
-    }
-    
+   void Stop()
+   {
+          _speed = 0f;
+          target = null;
+   }
+
+   void Play()
+   {
+          _speed = 3f;
+   }
 }
