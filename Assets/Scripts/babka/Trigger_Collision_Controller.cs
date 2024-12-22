@@ -12,10 +12,6 @@ public class Trigger_Collision_Controller : MonoBehaviour
     private bool _isSheald;
 
 
-    void Start(){
-       OnMagneting?.Invoke();  
-    }
-
 
     void OnTriggerEnter(Collider other){
         if (other.gameObject.CompareTag("barer") && !_isSheald){

@@ -13,13 +13,14 @@ public class Mov : MonoBehaviour
 
    void Start()
    {
-          MainMenu.OnPlay += Play;
+          DeadMenu.OnStart += OnStart;
           Trigger_Collision_Controller.OnDeath += Stop;
    }
 
    void Update()
    {
-     a = _speed;
+       a = _speed;
+
         if (target == null) return;
 
         Vector3 direction = (target.transform.position - transform.position).normalized;
@@ -45,8 +46,8 @@ public class Mov : MonoBehaviour
           target = null;
    }
 
-   void Play()
-   {
-          _speed = 3f;
+   void OnStart()
+   {      
+     _speed = 3f;
    }
 }

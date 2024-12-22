@@ -2,14 +2,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro; 
 
-
 public  class CoinCounter : MonoBehaviour
 {
     public TextMeshProUGUI  text;  
     private int _counter = 0;
-
+    
     void Start(){
-        Trigger_Collision_Controller.OnTakeCoin +=Coin;
+        Trigger_Collision_Controller.OnTakeCoin += Coin;
         Trigger_Collision_Controller.OnDeath += OnRestart;
     }
 
@@ -19,11 +18,8 @@ public  class CoinCounter : MonoBehaviour
 
     void Coin(){
             _counter++;
-            allMany.coins++;
+            Store.coins++; 
             if(text != null)
             text.text= "" + _counter;
     }
-
-
-
 }

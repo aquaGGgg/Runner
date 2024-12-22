@@ -15,7 +15,7 @@ public class DeadMenu : MonoBehaviour
     public TextMeshProUGUI allMoney; 
     public GameObject countersOjg;
     public GameObject mainMenu;
-     
+    public GameObject StartPatern; 
 
 
     void Start()
@@ -29,6 +29,7 @@ public class DeadMenu : MonoBehaviour
     }
 
     public void RestartGame(){ 
+        Instantiate(StartPatern,new Vector3(1.48447168f,-6.78846884f,-15.0999537f), Quaternion.identity);
         OnStart?.Invoke();
         RestartCounters();
 

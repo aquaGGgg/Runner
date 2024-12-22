@@ -5,17 +5,16 @@ using System;
 
 public class MainMenu : MonoBehaviour
 {
+    public static event Action OnPlay; 
 
-
-    public static event Action OnPlay;
-
-    public GameObject audioSource;
-    public TextMeshProUGUI sound;
 
     public TextMeshProUGUI allMoney; 
-    public GameObject counters;
-    public GameObject mainMenu;
 
+    public GameObject counters; //счетчики из игрового интерфейса
+    public GameObject mainMenu;
+    public GameObject seting;
+    public GameObject store;
+    
 
     public void OnPlaying(){
         counters.SetActive(true);
@@ -23,18 +22,22 @@ public class MainMenu : MonoBehaviour
         mainMenu.SetActive(false);
     }
 
+    public void Setings(){
+        if (seting.activeSelf == false){
+            seting.SetActive(true);
+        } else {
+            seting.SetActive(false);
+        }
+    } 
 
-    public void Sound(){
-
-        if (audioSource.activeSelf == false){
-           audioSource.SetActive(true);
-           //sound.text = "Звук выкл.";
-        } 
-        else{
-           audioSource.SetActive(false);
-           // sound.text = "Звук вкл.";
-           }
+    public void Store(){
+        if (store.activeSelf == false){
+            store.SetActive(true);
+        } else {
+            store.SetActive(false);
+        }
     }
+
 
 
 

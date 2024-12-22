@@ -9,6 +9,7 @@ public class Generator : MonoBehaviour
     void Start()
     {
         DeadMenu.OnStart +=OnStart;
+        DeadMenu.GoToMenu +=DestroyPrefabs;
     }
  
     private void generate(){
