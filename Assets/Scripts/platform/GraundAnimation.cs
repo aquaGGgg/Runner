@@ -8,7 +8,7 @@ public class GraundAnimation : MonoBehaviour
     [SerializeField]
     private float _scrollX = 0.5f;
 
-    private bool isStarting = false;
+    private static bool isStarting = false;
 
     void Start(){
         DeadMenu.OnStart += OnStart;

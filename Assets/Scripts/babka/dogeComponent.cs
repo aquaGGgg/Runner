@@ -34,7 +34,7 @@ public class DogeComponent : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.D) && !Physics.Raycast(transform.position - Vector3.down * 0.5f, Vector3.right, 1f) && _isDead == false)
         {
-            Invoke("DodgeToFalse", 0.1f);
+            _anime.SetBool("RightDodge", true);
             _poss++;
             StartCoroutine(SmoothMoveLeftRight(1f)); // перемещение вправо
         }
@@ -45,7 +45,7 @@ public class DogeComponent : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A) && !Physics.Raycast(transform.position - Vector3.down * 0.5f, Vector3.left, 1f) && _isDead == false)
         {
-            Invoke("DodgeToFalse", 0.1f);
+            _anime.SetBool("LeftDodge", true);
             _poss--;
             StartCoroutine(SmoothMoveLeftRight(-1f)); // перемещение влево
         }
@@ -56,12 +56,7 @@ public class DogeComponent : MonoBehaviour
 
         if ((Input.GetButton("Jump") || Input.GetKeyDown(KeyCode.W)) && _isGrounded && _isDead == false) //@jump
         {
-            _anime.SetBool("isJumping", true);
             _rb.linearVelocity = new Vector3(_rb.linearVelocity.x, CalculateJumpVelocity(), _rb.linearVelocity.z);
-        }
-        if (_isGrounded && _anime.GetBool("isJumping") == true)
-        {
-            _anime.SetBool("isJumping", false);
         }
 
         if (Input.GetKeyDown(KeyCode.S) && _isGrounded) // @slide
@@ -69,7 +64,7 @@ public class DogeComponent : MonoBehaviour
             _boxCollider.size = _boxCollider.size * 0.5f;
             _boxCollider.center = _boxCollider.center * 0.5f;
             _anime.SetBool("isSliding", true);
-            Invoke("NonSliding", 0.5f);
+            Invoke("NonSliding", 1f);
         }
     }
 
@@ -84,25 +79,22 @@ public class DogeComponent : MonoBehaviour
 
     /*----------------------------------------------------------------------------*/
 
-    void DodgeToFalse()
-    {
-        _anime.SetBool("Left_Dodge", false);
-    }
-
-    /*----------------------------------------------------------------------------*/
-
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("ground"))
+        if (collision.gameObject.CompareTag("ground")){
             _isGrounded = true;
+            _anime.SetBool("isJumping", false);
+        }
     }
 
     /*----------------------------------------------------------------------------*/
 
     void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("ground"))
+        if (collision.gameObject.CompareTag("ground")){
             _isGrounded = false;
+            _anime.SetBool("isJumping", true);
+            }
     }
 
     /*----------------------------------------------------------------------------*/
@@ -131,6 +123,7 @@ public class DogeComponent : MonoBehaviour
     }
 
     /*----------------------------------------------------------------------------*/
+
     // Корутина для плавного перемещения влево/вправ
     private IEnumerator SmoothMoveLeftRight(float distance)
     {
@@ -149,7 +142,10 @@ public class DogeComponent : MonoBehaviour
             yield return null; // Ждем один кадр
         }
 
-        // Устанавливаем точную конечную позицию
+        // Устанавливаем точную конечную позицию и выключаем анимацию доджа        
+        _anime.SetBool("RightDodge", false);
+        _anime.SetBool("LeftDodge", false);
         transform.position = targetPosition;
+
     }
 }

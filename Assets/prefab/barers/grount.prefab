@@ -122,4 +122,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scrollY: 0.5
-  _scrollX: 0.5
+  _scrollX: 0

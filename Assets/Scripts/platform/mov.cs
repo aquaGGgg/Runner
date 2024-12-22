@@ -35,7 +35,7 @@ public class Mov : MonoBehaviour
 
    private void bustMovspead()  
    {
-        _speed += 0.1f;
+        _speed += 0.25f;
    }
 
    void Stop()
