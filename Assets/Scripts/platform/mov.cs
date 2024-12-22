@@ -7,7 +7,6 @@ public class Mov : MonoBehaviour
 
    private static float _speed = 0f;
 
-   public float a = _speed;
 
 
 
@@ -19,7 +18,6 @@ public class Mov : MonoBehaviour
 
    void Update()
    {
-       a = _speed;
 
         if (target == null) return;
 
@@ -37,7 +35,7 @@ public class Mov : MonoBehaviour
 
    private void bustMovspead()  
    {
-        _speed += 0.01f;
+        _speed += 0.1f;
    }
 
    void Stop()
