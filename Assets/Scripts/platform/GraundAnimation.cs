@@ -12,6 +12,7 @@ public class GraundAnimation : MonoBehaviour
 
     void Start(){
         DeadMenu.OnStart += OnStart;
+        MainMenu.OnPlay += OnStart; //
         DeadMenu.GoToMenu += OnEnd;
         Trigger_Collision_Controller.OnDeath +=OnEnd;
     }

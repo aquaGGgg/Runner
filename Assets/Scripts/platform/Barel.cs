@@ -7,12 +7,6 @@ public class Barel : MonoBehaviour
 
    private static float _speed = 0.5f;
 
-    void Start()
-    {
-        
-    }
-
-
     void Update()
     {
          Vector3 direction = (target.transform.position - transform.position).normalized;

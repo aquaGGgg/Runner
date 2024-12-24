@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 using System;
+using YG;
 
 public class Store : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Store : MonoBehaviour
     private bool[] boughtSkins;
     private int selectedSkinIndex = -1; 
     private int SkinIndex;
+
 
     void Start()
     {
@@ -89,6 +91,7 @@ public class Store : MonoBehaviour
     {
         skinPriceText[SkinIndex].text = "5000";
     }
+
 
     public void VideoADS(){
         coins +=550;

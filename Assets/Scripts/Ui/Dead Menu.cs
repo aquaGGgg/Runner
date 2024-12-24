@@ -2,10 +2,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro; 
 using System;
+using YG;
 
 public class DeadMenu : MonoBehaviour
 {    
-
     public GameObject deadMenu;
 
     public static event Action OnStart;
@@ -15,30 +15,30 @@ public class DeadMenu : MonoBehaviour
     public TextMeshProUGUI allMoney; 
     public GameObject countersOjg;
     public GameObject mainMenu;
-    public GameObject StartPatern; 
 
 
     void Start()
     {
         Trigger_Collision_Controller.OnDeath += genMenu;
-        MainMenu.OnPlay += Continue;
     }
 
-    void genMenu(){
+    void genMenu()
+    {
         deadMenu.SetActive(true);
     }
 
-    public void Continue(){ 
-        Instantiate(StartPatern,new Vector3(1.48447168f,-6.78846884f,-15.0999537f), Quaternion.identity);
+
+    public void Continue() 
+    {
         OnStart?.Invoke();
         deadMenu.SetActive(false);
     }
 
-    public void ToMainMenu(){
+    public void ToMainMenu()
+    {
         GoToMenu?.Invoke();
         countersOjg.SetActive(false);
         mainMenu.SetActive(true);
         deadMenu.SetActive(false);
     }
-
 }

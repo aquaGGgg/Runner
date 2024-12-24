@@ -5,10 +5,12 @@ public class Generator : MonoBehaviour
 
     public GameObject[] paterns;
     private Vector3 _currentPosition = new Vector3(0,0,35f); // позиция спавна
+    public GameObject StartPatern; 
 
     void Start()
     {
         DeadMenu.OnStart +=OnStart;
+        MainMenu.OnPlay +=OnStart; //
         DeadMenu.GoToMenu +=DestroyPrefabs;
     }
  
@@ -36,5 +38,7 @@ public class Generator : MonoBehaviour
         {
             Destroy(clone);
         }
+        
+        Instantiate(StartPatern, new Vector3(1.48447168f, -6.78846884f, -15.0999537f), Quaternion.identity);
     }
 }

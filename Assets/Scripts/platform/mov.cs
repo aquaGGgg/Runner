@@ -12,6 +12,7 @@ public class Mov : MonoBehaviour
 
    void Start()
    {
+          MainMenu.OnPlay += OnStart;
           DeadMenu.OnStart += OnStart;
           Trigger_Collision_Controller.OnDeath += Stop;
    }

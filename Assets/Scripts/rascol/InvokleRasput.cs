@@ -11,6 +11,7 @@ public class InvokleRasput : MonoBehaviour
     void Start()
     {
         DeadMenu.OnStart += OnHaras;
+        MainMenu.OnPlay += OnHaras; // 
         DogeComponent.OnHarassment += OnHaras;        
         Trigger_Collision_Controller.OnDeath +=OnHaras;
     }

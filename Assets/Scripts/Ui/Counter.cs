@@ -12,9 +12,9 @@ public  class Counter : MonoBehaviour
     private bool _isGaiming = true;
 
     void Start(){
-        MainMenu.OnPlay += OnStart;
         Trigger_Collision_Controller.OnDeath +=Stop;
-        DeadMenu.OnStart += Хуй;
+        DeadMenu.OnStart += IsGaimng;
+        MainMenu.OnPlay += OnStart;
     }
 
     void Update()
@@ -38,7 +38,7 @@ public  class Counter : MonoBehaviour
         _isGaiming = true;
     }
 
-    void Хуй(){
+    void IsGaimng(){
         _isGaiming = true;
     }
 

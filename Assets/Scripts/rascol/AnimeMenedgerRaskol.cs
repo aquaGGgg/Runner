@@ -9,6 +9,7 @@ public class AnimeMenedgerRaskol : MonoBehaviour
     {
         Trigger_Collision_Controller.OnDeath +=Fatality;
         DeadMenu.OnStart += OnStart;
+        MainMenu.OnPlay += OnStart; // 
         _anime = GetComponent<Animator>();
     }
 

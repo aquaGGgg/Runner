@@ -29,6 +29,7 @@ public class DogeComponent : MonoBehaviour
 
         Trigger_Collision_Controller.OnDeath += Dead;
         DeadMenu.OnStart += OnStart;
+        MainMenu.OnPlay += OnStart; 
     }
 
     /*----------------------------------------------------------------------------*/
