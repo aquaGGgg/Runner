@@ -89,4 +89,9 @@ public class Store : MonoBehaviour
     {
         skinPriceText[SkinIndex].text = "5000";
     }
+
+    public void VideoADS(){
+        coins +=550;
+    }
+    
 }

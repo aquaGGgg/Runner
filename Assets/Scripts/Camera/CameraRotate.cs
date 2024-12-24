@@ -35,7 +35,7 @@ public class CameraRotate : MonoBehaviour
         while (Vector3.Distance(transform.localPosition , endlocalPosition ) > 1f || Quaternion.Angle(transform.rotation, endRotation) > 1f)
         {
             // Плавное перемещение камеры
-            transform.localPosition  = Vector3.Lerp(transform.localPosition , endlocalPosition , transitionSpeed  * Time.deltaTime);
+            transform.localPosition  = Vector3.Lerp(transform.localPosition , endlocalPosition , 5 * transitionSpeed  * Time.deltaTime);
 
             // Плавное изменение поворота камеры
             transform.rotation = Quaternion.Slerp(transform.rotation, endRotation, transitionSpeed * Time.deltaTime);

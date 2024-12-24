@@ -21,25 +21,17 @@ public class DeadMenu : MonoBehaviour
     void Start()
     {
         Trigger_Collision_Controller.OnDeath += genMenu;
-        MainMenu.OnPlay += RestartGame;
+        MainMenu.OnPlay += Continue;
     }
 
     void genMenu(){
         deadMenu.SetActive(true);
     }
 
-    public void RestartGame(){ 
+    public void Continue(){ 
         Instantiate(StartPatern,new Vector3(1.48447168f,-6.78846884f,-15.0999537f), Quaternion.identity);
         OnStart?.Invoke();
-        RestartCounters();
-
         deadMenu.SetActive(false);
-        Time.timeScale = 1;
-    }
-
-    void RestartCounters(){
-        counters[0].text = "0";
-        counters[1].text = "0";
     }
 
     public void ToMainMenu(){
@@ -48,4 +40,5 @@ public class DeadMenu : MonoBehaviour
         mainMenu.SetActive(true);
         deadMenu.SetActive(false);
     }
+
 }
