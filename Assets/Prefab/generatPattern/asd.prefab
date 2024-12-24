@@ -579,6 +579,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: groind (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6504185482001547388, guid: 062e62763c519044aa6849bd317e106a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6631081407381093248, guid: 062e62763c519044aa6849bd317e106a, type: 3}
       propertyPath: _scrollY
       value: -0.8899798
@@ -656,6 +660,10 @@ PrefabInstance:
     - target: {fileID: 6504185482001547388, guid: 062e62763c519044aa6849bd317e106a, type: 3}
       propertyPath: m_Name
       value: groind
+      objectReference: {fileID: 0}
+    - target: {fileID: 6504185482001547388, guid: 062e62763c519044aa6849bd317e106a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6631081407381093248, guid: 062e62763c519044aa6849bd317e106a, type: 3}
       propertyPath: _scrollY

@@ -16,6 +16,9 @@ public class DogeComponent : MonoBehaviour
     [SerializeField]
     private bool _isDead;
 
+    // Флаг для отслеживания выполнения корутины
+    private bool isCoroutineRunning = false;
+
     /*----------------------------------------------------------------------------*/
 
     void Start()
@@ -32,26 +35,28 @@ public class DogeComponent : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D) && !Physics.Raycast(transform.position - Vector3.down * 0.5f, Vector3.right, 1f) && _isDead == false)
-        {
-            _anime.SetBool("RightDodge", true);
-            _poss++;
-            StartCoroutine(SmoothMoveLeftRight(1f)); // перемещение вправо
-        }
-        else if (Input.GetKeyDown(KeyCode.D) && Physics.Raycast(transform.position - Vector3.down * 0.5f, Vector3.right, 1f))
-        {
-            OnHarassment?.Invoke();
+        if (Input.GetKeyDown(KeyCode.D) && _isDead == false){
+            if (!Physics.Raycast(transform.position - Vector3.down * 0.5f, Vector3.right, 1f))
+            {
+                _anime.SetBool("RightDodge", true);
+                _poss++;
+                // Проверяем, выполняется ли корутина
+                if (!isCoroutineRunning)
+                    StartCoroutine(SmoothMoveLeftRight(1f)); // перемещение вправо
+            }
+            else OnHarassment?.Invoke();
         }
 
-        if (Input.GetKeyDown(KeyCode.A) && !Physics.Raycast(transform.position - Vector3.down * 0.5f, Vector3.left, 1f) && _isDead == false)
-        {
-            _anime.SetBool("LeftDodge", true);
-            _poss--;
-            StartCoroutine(SmoothMoveLeftRight(-1f)); // перемещение влево
-        }
-        else if (Input.GetKeyDown(KeyCode.A) && Physics.Raycast(transform.position - Vector3.down * 0.5f, Vector3.left, 1f))
-        {
-            OnHarassment?.Invoke();
+        if (Input.GetKeyDown(KeyCode.A) && _isDead == false){
+            if (!Physics.Raycast(transform.position - Vector3.down * 0.5f, Vector3.left, 1f))
+            {
+                _anime.SetBool("LeftDodge", true);
+                _poss--;
+                // Проверяем, выполняется ли корутина
+                if (!isCoroutineRunning)
+                    StartCoroutine(SmoothMoveLeftRight(-1f)); // перемещение влево
+            }
+            else OnHarassment?.Invoke();
         }
 
         if ((Input.GetButton("Jump") || Input.GetKeyDown(KeyCode.W)) && _isGrounded && _isDead == false) //@jump
@@ -127,6 +132,8 @@ public class DogeComponent : MonoBehaviour
     // Корутина для плавного перемещения влево/вправ
     private IEnumerator SmoothMoveLeftRight(float distance)
     {
+        isCoroutineRunning = true; // Устанавливаем флаг, что корутина выполняется
+
         Vector3 startPosition = transform.position;
         Vector3 targetPosition = startPosition + Vector3.right * distance; // Направление влево или вправо
 
@@ -147,5 +154,6 @@ public class DogeComponent : MonoBehaviour
         _anime.SetBool("LeftDodge", false);
         transform.position = targetPosition;
 
+        isCoroutineRunning = false; // Сбрасываем флаг после завершения корутины
     }
 }
