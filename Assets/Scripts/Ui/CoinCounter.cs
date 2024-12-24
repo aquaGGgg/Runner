@@ -1,4 +1,4 @@
-using UnityEngine;
+    using UnityEngine;
 using UnityEngine.UI;
 using TMPro; 
 
@@ -9,11 +9,12 @@ public  class CoinCounter : MonoBehaviour
     
     void Start(){
         Trigger_Collision_Controller.OnTakeCoin += Coin;
-        Trigger_Collision_Controller.OnDeath += OnRestart;
+        MainMenu.OnPlay += OnRestart;
     }
 
     void OnRestart(){
         _counter=0;
+        text.text= "0";
     }
 
     void Coin(){
